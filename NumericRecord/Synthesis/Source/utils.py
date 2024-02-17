@@ -5,7 +5,9 @@ import numpy as np
 from tqdm import tqdm
 
 
-def One_suboptimal_MultiR_HL(K: int, L: int = 2, rlow: float = 0.8, rhigh: float = 0.9, dlow: float = 0.1, dhigh: float = 0.9) -> tuple[np.ndarray, np.ndarray]:
+def One_suboptimal_MultiR_HL(
+    K: int, L: int = 2, rlow: float = 0.8, rhigh: float = 0.9, dlow: float = 0.1, dhigh: float = 0.9
+) -> tuple[np.ndarray, np.ndarray]:
     """Arms with higher reward consume less resource, but the mean reward and consumption only have two values
 
     Args:
@@ -28,7 +30,9 @@ def One_suboptimal_MultiR_HL(K: int, L: int = 2, rlow: float = 0.8, rhigh: float
     return reward, demand
 
 
-def One_suboptimal_MultiR_Mixture(K: int, L: int = 2, rlow: float = 0.8, rhigh: float = 0.9, dlow: float = 0.1, dhigh: float = 0.9) -> tuple[np.ndarray, np.ndarray]:
+def One_suboptimal_MultiR_Mixture(
+    K: int, L: int = 2, rlow: float = 0.8, rhigh: float = 0.9, dlow: float = 0.1, dhigh: float = 0.9
+) -> tuple[np.ndarray, np.ndarray]:
     """Arms with higher reward consume less resource, but the mean reward and consumption only have two values
 
     Args:
@@ -53,7 +57,9 @@ def One_suboptimal_MultiR_Mixture(K: int, L: int = 2, rlow: float = 0.8, rhigh: 
     return reward, demand
 
 
-def One_suboptimal_MultiR_HH(K: int, L: int = 2, rlow: float = 0.8, rhigh: float = 0.9, dlow: float = 0.1, dhigh: float = 0.9) -> tuple[np.ndarray, np.ndarray]:
+def One_suboptimal_MultiR_HH(
+    K: int, L: int = 2, rlow: float = 0.8, rhigh: float = 0.9, dlow: float = 0.1, dhigh: float = 0.9
+) -> tuple[np.ndarray, np.ndarray]:
     """Arms with higher reward consume more resource, but the mean reward and consumption only have two values
 
     Args:
@@ -100,7 +106,9 @@ def Poly_MultiR_HL(K: int, L: int = 2, dlow: float = 0.1, dhigh: float = 0.9) ->
     return reward, demand
 
 
-def Poly_MultiR_Mixture(K: int, L: int = 2, rlow: float = 0.1, rhigh: float = 0.9, dlow: float = 0.1, dhigh: float = 0.9) -> tuple[np.ndarray, np.ndarray]:
+def Poly_MultiR_Mixture(
+    K: int, L: int = 2, rlow: float = 0.1, rhigh: float = 0.9, dlow: float = 0.1, dhigh: float = 0.9
+) -> tuple[np.ndarray, np.ndarray]:
     """The reward is $r_1=0.9$, $r_i=0.9(1-\sqrt{\frac{i}{n}}), i\ge 2$
 
     Args:
@@ -127,7 +135,9 @@ def Poly_MultiR_Mixture(K: int, L: int = 2, rlow: float = 0.1, rhigh: float = 0.
     return reward, demand
 
 
-def Poly_MultiR_HH(K: int, L: int = 2, rlow: float = 0.1, rhigh: float = 0.9, dlow: float = 0.1, dhigh: float = 0.9) -> tuple[np.ndarray, np.ndarray]:
+def Poly_MultiR_HH(
+    K: int, L: int = 2, rlow: float = 0.1, rhigh: float = 0.9, dlow: float = 0.1, dhigh: float = 0.9
+) -> tuple[np.ndarray, np.ndarray]:
     """The reward is $r_1=0.9$, $r_i=0.9(1-\sqrt{\frac{i}{n}}), i\ge 2$
 
     Args:
@@ -152,77 +162,9 @@ def Poly_MultiR_HH(K: int, L: int = 2, rlow: float = 0.1, rhigh: float = 0.9, dl
     return reward, demand
 
 
-def Linear_MultiR_HL(K: int, L: int = 2, rlow: float = 0.1, rhigh: float = 0.9, dlow: float = 0.1, dhigh: float = 0.9) -> tuple[np.ndarray, np.ndarray]:
-    """The reward is arithmetic sequence, arm with higher reward consume less
-
-    Args:
-        K (int): number of arms
-        L (int, optional): number of resources. Defaults to 2.
-        rlow (float, optional): smaller value of mean reward. Defaults to 0.1.
-        rhigh (float, optional): bigger value of mean reward. Defaults to 0.9.
-        dlow (float, optional): smaller value of mean consumption. Defaults to 0.1.
-        dhigh (float, optional): bigger value of mean consumption. Defaults to 0.9.
-
-    Returns:
-        tuple[np.ndarray, np.ndarray]: _description_
-    """
-    reward = np.linspace(rhigh, rlow, K)
-
-    demand = np.zeros((L, K))
-    demand[:, 0 : K // 2] = dlow
-    demand[:, K // 2 :] = dhigh
-
-    return reward, demand
-
-
-def Linear_MultiR_Mixture(K: int, L: int = 2, rlow: float = 0.1, rhigh: float = 0.9, dlow: float = 0.1, dhigh: float = 0.9) -> tuple[np.ndarray, np.ndarray]:
-    """The reward is arithmetic sequence, arm with higher reward consume less
-
-    Args:
-        K (int): number of arms
-        L (int, optional): number of resources. Defaults to 2.
-        rlow (float, optional): smaller value of mean reward. Defaults to 0.1.
-        rhigh (float, optional): bigger value of mean reward. Defaults to 0.9.
-        dlow (float, optional): smaller value of mean consumption. Defaults to 0.1.
-        dhigh (float, optional): bigger value of mean consumption. Defaults to 0.9.
-
-    Returns:
-        tuple[np.ndarray, np.ndarray]: _description_
-    """
-    reward = np.linspace(rhigh, rlow, K)
-
-    demand = np.zeros((L, K))
-    demand[0 : L // 2, 0 : K // 2] = dlow
-    demand[0 : L // 2, K // 2 :] = dhigh
-    demand[L // 2 :, 0 : K // 2] = dhigh
-    demand[L // 2 :, K // 2 :] = dlow
-
-    return reward, demand
-
-
-def Linear_MultiR_HH(K: int, L: int = 2, rlow: float = 0.1, rhigh: float = 0.9, dlow: float = 0.1, dhigh: float = 0.9) -> tuple[np.ndarray, np.ndarray]:
-    """The reward is arithmetic sequence, arm with higher reward consume more
-
-    Args:
-        K (int): number of arms
-        L (int, optional): number of resources. Defaults to 2.
-        rlow (float, optional): smaller value of mean reward. Defaults to 0.1.
-        rhigh (float, optional): bigger value of mean reward. Defaults to 0.9.
-        dlow (float, optional): smaller value of mean consumption. Defaults to 0.1.
-        dhigh (float, optional): bigger value of mean consumption. Defaults to 0.9.
-
-    Returns:
-        tuple[np.ndarray, np.ndarray]: _description_
-    """
-    reward = np.linspace(rhigh, rlow, K)
-    demand = np.zeros((L, K))
-    demand[:, 0 : K // 2] = dhigh
-    demand[:, K // 2 :] = dlow
-
-    return reward, demand
-
-
-def Geometry_MultiR_HL(K: int, L: int = 2, rlow: float = 0.1, rhigh: float = 0.9, dlow: float = 0.1, dhigh: float = 0.9) -> tuple[np.ndarray, np.ndarray]:
+def Geometry_MultiR_HL(
+    K: int, L: int = 2, rlow: float = 0.1, rhigh: float = 0.9, dlow: float = 0.1, dhigh: float = 0.9
+) -> tuple[np.ndarray, np.ndarray]:
     """The reward is a geometric sequence, arm with higher reward consume less
 
     Args:
@@ -245,7 +187,9 @@ def Geometry_MultiR_HL(K: int, L: int = 2, rlow: float = 0.1, rhigh: float = 0.9
     return reward, demand
 
 
-def Geometry_MultiR_Mixture(K: int, L: int = 2, rlow: float = 0.1, rhigh: float = 0.9, dlow: float = 0.1, dhigh: float = 0.9) -> tuple[np.ndarray, np.ndarray]:
+def Geometry_MultiR_Mixture(
+    K: int, L: int = 2, rlow: float = 0.1, rhigh: float = 0.9, dlow: float = 0.1, dhigh: float = 0.9
+) -> tuple[np.ndarray, np.ndarray]:
     """The reward is a geometric sequence, arm with higher reward consume less
 
     Args:
@@ -269,7 +213,9 @@ def Geometry_MultiR_Mixture(K: int, L: int = 2, rlow: float = 0.1, rhigh: float 
     return reward, demand
 
 
-def Geometry_MultiR_HH(K: int, L: int = 2, rlow: float = 0.1, rhigh: float = 0.9, dlow: float = 0.1, dhigh: float = 0.9) -> tuple[np.ndarray, np.ndarray]:
+def Geometry_MultiR_HH(
+    K: int, L: int = 2, rlow: float = 0.1, rhigh: float = 0.9, dlow: float = 0.1, dhigh: float = 0.9
+) -> tuple[np.ndarray, np.ndarray]:
     """The reward is a geometric sequence, arm with higher reward consume more
 
     Args:
@@ -288,77 +234,6 @@ def Geometry_MultiR_HH(K: int, L: int = 2, rlow: float = 0.1, rhigh: float = 0.9
     demand[:, 0 : K // 2] = dhigh
     demand[:, K // 2 :] = dlow
 
-    return reward, demand
-
-
-def One_Competitor_MultiR_HL(K: int, L: int = 2, rlow=0.0, rmid=0.8, rhigh=0.9, dlow: float = 0.1, dhigh: float = 0.9) -> tuple[np.ndarray, np.ndarray]:
-    """Arms with higher reward consume less resource, but the mean reward and consumption only have 3 values
-
-    Args:
-        K (int): number of arms.
-        L (int, optional): number of resources. Defaults to 2.
-        rlow (float, optional): smaller value of mean reward. Defaults to 0.1.
-        rmid (float, optional): middle value of mean reward. Defaults to 0.8.
-        rhigh (float, optional): bigger value of mean reward. Defaults to 0.9.
-        dlow (float, optional): smaller value of mean consumption. Defaults to 0.1.
-        dhigh (float, optional): bigger value of mean consumption. Defaults to 0.9.
-    """
-    reward = np.zeros(K)
-    reward[0] = rhigh
-    reward[1] = rmid
-    reward[2:] = rlow
-
-    demand = np.zeros((L, K))
-    demand[:, 0 : K // 2] = dlow
-    demand[:, K // 2 :] = dhigh
-    return reward, demand
-
-
-def One_Competitor_MultiR_Mixture(K: int, L: int = 2, rlow=0.0, rmid=0.8, rhigh=0.9, dlow: float = 0.1, dhigh: float = 0.9) -> tuple[np.ndarray, np.ndarray]:
-    """Arms with higher reward consume less resource, but the mean reward and consumption only have 3 values
-
-    Args:
-        K (int): number of arms.
-        L (int, optional): number of resources. Defaults to 2.
-        rlow (float, optional): smaller value of mean reward. Defaults to 0.1.
-        rmid (float, optional): middle value of mean reward. Defaults to 0.8.
-        rhigh (float, optional): bigger value of mean reward. Defaults to 0.9.
-        dlow (float, optional): smaller value of mean consumption. Defaults to 0.1.
-        dhigh (float, optional): bigger value of mean consumption. Defaults to 0.9.
-    """
-    reward = np.zeros(K)
-    reward[0] = rhigh
-    reward[1] = rmid
-    reward[2:] = rlow
-
-    demand = np.zeros((L, K))
-    demand[0 : L // 2, 0 : K // 2] = dlow
-    demand[0 : L // 2, K // 2 :] = dhigh
-    demand[L // 2 :, 0 : K // 2] = dhigh
-    demand[L // 2 :, K // 2 :] = dlow
-    return reward, demand
-
-
-def One_Competitor_MultiR_HH(K: int, L: int = 2, rlow=0.0, rmid=0.8, rhigh=0.9, dlow: float = 0.1, dhigh: float = 0.9) -> tuple[np.ndarray, np.ndarray]:
-    """Arms with higher reward consume more resource, but the mean reward and consumption only have 3 values
-
-    Args:
-        K (int): number of arms
-        L (int, optional): number of resources. Defaults to 2.
-        rlow (float, optional): smaller value of mean reward. Defaults to 0.1.
-        rmid (float, optional): middle value of mean reward. Defaults to 0.8.
-        rhigh (float, optional): bigger value of mean reward. Defaults to 0.9.
-        dlow (float, optional): smaller value of mean consumption. Defaults to 0.1.
-        dhigh (float, optional): bigger value of mean consumption. Defaults to 0.9.
-    """
-    reward = np.zeros(K)
-    reward[0] = rhigh
-    reward[1] = rmid
-    reward[2:] = rlow
-
-    demand = np.zeros((L, K))
-    demand[:, 0 : K // 2] = dhigh
-    demand[:, K // 2 :] = dlow
     return reward, demand
 
 

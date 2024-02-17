@@ -5,7 +5,15 @@ from typing import Tuple
 
 
 class Env_FixedConsumption:
-    def __init__(self, r_list: np.ndarray = np.array([0.5, 0.25]), d_list: np.ndarray = np.array([[0.1, 0.1]]), K: int = 2, C: np.ndarray = np.array([10]), L: int = 1, random_seed=12345) -> None:
+    def __init__(
+        self,
+        r_list: np.ndarray = np.array([0.5, 0.25]),
+        d_list: np.ndarray = np.array([[0.1, 0.1]]),
+        K: int = 2,
+        C: np.ndarray = np.array([10]),
+        L: int = 1,
+        random_seed=12345,
+    ) -> None:
         """In this environment, the reward is stochastic, the consumption is fixed
 
         Args:
@@ -59,7 +67,15 @@ class Env_FixedConsumption:
 
 
 class Env_Uncorrelated_Reward:
-    def __init__(self, r_list: np.ndarray = np.array([0.5, 0.25]), d_list: np.ndarray = np.array([[0.1, 0.1]]), K: int = 2, C: np.ndarray = np.array([10]), L: int = 1, random_seed=12345) -> None:
+    def __init__(
+        self,
+        r_list: np.ndarray = np.array([0.5, 0.25]),
+        d_list: np.ndarray = np.array([[0.1, 0.1]]),
+        K: int = 2,
+        C: np.ndarray = np.array([10]),
+        L: int = 1,
+        random_seed=12345,
+    ) -> None:
         """In this environment, the reward and demand are independent
 
         Args:
@@ -110,7 +126,15 @@ class Env_Uncorrelated_Reward:
 
 
 class Env_Correlated_Uniform:
-    def __init__(self, r_list: np.ndarray = np.array([0.5, 0.25]), d_list: np.ndarray = np.array([[0.1, 0.1]]), K: int = 2, C: np.ndarray = np.array([10]), L: int = 1, random_seed=12345) -> None:
+    def __init__(
+        self,
+        r_list: np.ndarray = np.array([0.5, 0.25]),
+        d_list: np.ndarray = np.array([[0.1, 0.1]]),
+        K: int = 2,
+        C: np.ndarray = np.array([10]),
+        L: int = 1,
+        random_seed=12345,
+    ) -> None:
         """In this environment, the reward and demand are dependent
         reward = \mathbb{1}(U <= r), consumption = \mathbb{1}(U <= d),
         where U follows U(0, 1)
