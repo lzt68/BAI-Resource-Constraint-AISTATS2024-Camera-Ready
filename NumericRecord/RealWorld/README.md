@@ -19,7 +19,7 @@ Each folder corresponds to a dataset and its numeric experiments. The details of
 + "Obesity": This folder contains the notebooks for conducting numeric experiments on dataset Obesity.
 + "UCIDigits": This folder contains the notebooks for conducting numeric experiments on dataset UCIDigits.
 
-Notebooks for identifying the best machine learning model
+Notebooks for identifying the best machine learning model and hyperparameter setting.
 
 + Experiment-RealWorld-K-32-Find-Best-Arm-arcene.ipynb.
 + Experiment-Realworld-K-32-Find-Best-Arm-digits-3-8.ipynb.
